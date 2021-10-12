@@ -29,8 +29,10 @@ const createRest = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getAllRest = (req: Request, res: Response, next: NextFunction) => {
-  Rest.find().populate('dishes')
+  Rest.find({}).populate('dishes')
     .exec((err: any,docs: any)=>{
+      console.log(docs);
+      
       if(err){
         return res.status(500).json({
           message: err.message,

@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import IDish from "./dish.interface";
 
 const DishSchema: Schema = new Schema(
   {
@@ -12,4 +11,4 @@ const DishSchema: Schema = new Schema(
 );
 
 
-export default mongoose.model<IDish>("Dish", DishSchema);
+export default mongoose.model("Dish", DishSchema);

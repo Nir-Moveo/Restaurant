@@ -7,7 +7,7 @@ const RestSchema: Schema = new Schema(
     chef: { type: String, required: true },
     createDate : {type: String, required: true},
     foodType : { type:String, required: true},
-    dishes : {type: mongoose.Schema.Types.ObjectId,ref: "Dish",index: true}
+    dishes : [{type: mongoose.Schema.Types.ObjectId,ref: "Dish",index: true}]
   },
   {
     timestamps: true,

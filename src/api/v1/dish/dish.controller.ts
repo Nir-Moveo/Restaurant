@@ -30,39 +30,9 @@ const createDish = (req: Request, res: Response, next: NextFunction) => {
       });
 };
 
-// const getAllDish = (req: Request, res: Response, next: NextFunction) => {
-//   Dish.find()
-//     .exec()
-//     .then((dishes) => {
-//       return res.status(200).json({
-//         dishes: dishes,
-//         count: dishes.length,
-//       });
-//     })
-//     .catch((error) => {
-//       return res.status(500).json({
-//         message: error.message,
-//         error,
-//       });
-//     });
-// };
 
-// const getDish = (req: Request, res: Response, next: NextFunction) => {
-//   let { id } = req.params;
-//   Dish.findById(id)
-//     .exec()
-//     .then((dish) => {
-//       return res.status(200).json({
-//         dish: dish,
-//       });
-//     })
-//     .catch((error) => {
-//       return res.status(500).json({
-//         message: error.message,
-//         error,
-//       });
-//     });
-// };
+
+
 
 const uptadeDish = (req: Request, res: Response, next: NextFunction) => {
   let {id} = req.params;
@@ -70,12 +40,12 @@ const uptadeDish = (req: Request, res: Response, next: NextFunction) => {
   Dish.findByIdAndUpdate(id, {
     name:name,
     price:price
-  }, {new:true}).then((dish)=>{
+  }, {new:true}).then((dish: any)=>{
     res.status(200).json({
       dish:dish
     })
   })
-  .catch((error) => {
+  .catch((error: { message: any; }) => {
     return res.status(500).json({
       message: error.message,
       error,
@@ -84,7 +54,7 @@ const uptadeDish = (req: Request, res: Response, next: NextFunction) => {
 };
 const deleteDish = (req: Request, res: Response, next: NextFunction) => {
   let {Did, Rid} = req.params;
-  Dish.findById(Did).then((dish)=>{
+  Dish.findById(Did).then((dish: { remove: () => Promise<any>; })=>{
     dish?.remove().then(()=>{
       Rest.findByIdAndUpdate(Rid, {
         $pull: {
@@ -97,7 +67,7 @@ const deleteDish = (req: Request, res: Response, next: NextFunction) => {
       })
     })
   })
-  .catch((error) => {
+  .catch((error: { message: any; }) => {
     return res.status(500).json({
       message: error.message,
       error,
